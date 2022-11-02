@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# version: 1.5
+# version: 1.6
 # contact: ops@torguard.net
 # PrivateRouter DockerDeploy Script
 # TIP: for global access, ln -s dockerdeploy.sh /usr/bin/dockerdeploy
@@ -10,6 +10,9 @@ then
   echo "Another instance of this script is running, please wait a little bit before trying again."
   exit 1
 fi
+
+# This script accepts one input, the name of the folder it looks for in our template directory.
+COMPOSE="${1}"
 
 # This is where our templates are stored and searched for
 TEMPLATE_DIR=/root/docker-compose
@@ -24,9 +27,6 @@ FINAL_DIR="${OUTPUT_DIR}/${COMPOSE}"
 
 # Get our local LAN IP Address
 LAN_IP=$(uci get network.lan.ipaddr)
-
-# This script accepts one input, the name of the folder it looks for in our template directory.
-COMPOSE="${1}"
 
 # Generate the generic environment variables for the docker-compose
 gen_env() {
