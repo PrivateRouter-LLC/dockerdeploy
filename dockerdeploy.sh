@@ -30,8 +30,8 @@ LAN_IP=$(uci get network.lan.ipaddr)
 
 # Generate the generic environment variables for the docker-compose
 gen_env() {
-  GEN_PASS=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
-  GEN_PASS2=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
+  GEN_PASS=$(< /dev/urandom tr -dc A-Za-z0-9 2>/dev/null | head -c14; echo)
+  GEN_PASS2=$(< /dev/urandom tr -dc A-Za-z0-9 2>/dev/null | head -c14; echo)
 
 cat > ${FINAL_DIR}/.env <<-EOF
 INSTANCE_NAME=${COMPOSE}
