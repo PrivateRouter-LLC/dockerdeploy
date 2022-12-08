@@ -18,7 +18,7 @@ COMPOSE="${1}"
 TEMPLATE_DIR=/root/docker-compose
 
 # This is the directory we copy our compose files to before we bring them up
-OUTPUT_DIR=/opt/docker-compose
+OUTPUT_DIR=/opt/docker2/compose
 
 # We set a variable for our from and final destination directories
 # Note: These are not meant to be edited
@@ -27,6 +27,8 @@ FINAL_DIR="${OUTPUT_DIR}/${COMPOSE}"
 
 # Get our local LAN IP Address
 LAN_IP=$(uci get network.lan.ipaddr)
+# Strip trailing network mask
+LAN_IP="${LAN_IP%/*}"
 
 # Generate the generic environment variables for the docker-compose
 gen_env() {
